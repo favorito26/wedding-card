@@ -29,7 +29,7 @@ body {
 .writings{
   @apply absolute md:top-20 top-[148px] text-amber-600 w-full flex flex-col items-center justify-center text-center;
   font-family: 'alkanz';
-  animation: fade-in linear 3s;
+  animation: fade-in linear 1.5s;
   opacity: 1;
 }
 

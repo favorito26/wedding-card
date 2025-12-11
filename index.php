@@ -150,22 +150,30 @@ $guest = $q->fetch_assoc();
       <p class="arrow-text">Scroll</p>
       </div>
     </section>
-    <form
-      class="w-full h-full flex flex-col justify-center items-center text-center text-amber-600"
-      action="rsvp.php"
-      method="post"
-      id="rsvpForm"
-    >
-      <p class="invite-text"><?= $name; ?></p>
-      <p class="invite-text"><?= $invitees; ?></p>
-      <main>Please give us your valuable RSVP</main>
-      <button type="submit" class="bg-amber-900 text-white p-5 mt-3">
-        Inshaallah I will attend
-      </button>
-      <button type="submit" class="bg-amber-900 text-white p-5 mt-3">
-        We are there by our heart, Mubarak mohannah
-      </button>
-    </form>
+<form
+  class="w-full h-full flex flex-col justify-center items-center text-center text-amber-600"
+  action="rsvp.php"
+  method="post"
+  id="rsvpForm"
+>
+  <!-- Hidden guest ID so RSVP works -->
+  <input type="hidden" name="id" value="<?= $guest['id']; ?>">
+
+  <p class="invite-text"><?= $guest['name']; ?></p>
+  <p class="invite-text">Invitees: <?= $guest['Invitees']; ?></p>
+
+  <main>Please give us your valuable RSVP</main>
+
+  <button type="submit" name="status" value="accepted"
+          class="bg-amber-900 text-white p-5 mt-3">
+    Inshaallah I will attend
+  </button>
+
+  <button type="submit" name="status" value="declined"
+          class="bg-amber-900 text-white p-5 mt-3">
+    We are there by our heart, Mubarak mohannah
+  </button>
+</form>
 
     <script>
       gsap.registerPlugin(ScrollTrigger);
