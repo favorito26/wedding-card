@@ -27,9 +27,10 @@ body {
 }
 
 .writings{
-  @apply absolute md:top-20 top-44 text-amber-600 w-full flex flex-col items-center justify-center text-center;
+  @apply absolute md:top-20 top-[148px] text-amber-600 w-full flex flex-col items-center justify-center text-center;
   font-family: 'alkanz';
   animation: fade-in linear 3s;
+  opacity: 1;
 }
 
 .invite-text{
@@ -55,7 +56,7 @@ body {
     pointer-events: none; /* Allows interaction with the image */
 }
 .lantern{
-    @apply absolute top-0 right-6 w-24 h-52 object-cover;
+    @apply absolute top-0 right-6 w-20 h-48 object-cover;
     animation: swing 1.2s ease-in-out infinite;
     transform-origin: top center;
 }
@@ -68,6 +69,14 @@ body {
     @apply absolute top-0 right-36 w-12 h-32 object-cover;
     animation: swing 1s ease-in-out infinite;
     transform-origin: top center;
+}
+
+article{
+  @apply mt-1.5 flex gap-2 w-56 items-center justify-center font-serif text-left;
+}
+
+main{
+  @apply flex gap-5 text-lg
 }
 
 @keyframes swing {
@@ -83,4 +92,41 @@ body {
   100%{
     opacity: 1;
   }
+}
+
+#rsvpForm {
+  opacity: 0;
+}
+
+
+
+@keyframes arrow-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.arrow-container{
+  position:absolute;
+  bottom:10px;
+  display:flex;
+  align-items:center;
+  z-index:50;
+  right: 75%;
+  animation: arrow-bounce 1s infinite;
+}
+.arrow{
+  color: var(--color-amber-700);
+}
+.arrow-text{
+  width: 80%;
+  font-size:12px;
+  color:#92400e;
+  transform: rotate(90deg) translateX(-35px) translateY(15px);
+  transform-origin: left center;
+  margin:0;
+  
 }

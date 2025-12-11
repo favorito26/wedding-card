@@ -5,18 +5,23 @@
   :root, :host {
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-amber-50: oklch(98.7% 0.022 95.277);
     --color-amber-100: oklch(96.2% 0.059 95.617);
     --color-amber-600: oklch(66.6% 0.179 58.318);
+    --color-amber-700: oklch(55.5% 0.163 48.998);
+    --color-amber-900: oklch(41.4% 0.112 45.904);
     --color-amber-950: oklch(27.9% 0.077 45.635);
+    --color-white: #fff;
     --spacing: 0.25rem;
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
     --drop-shadow-lg: 0 4px 4px rgb(0 0 0 / 0.15);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -173,17 +178,83 @@
   .absolute {
     position: absolute;
   }
+  .top-40 {
+    top: calc(var(--spacing) * 40);
+  }
   .right-12 {
     right: calc(var(--spacing) * 12);
+  }
+  .mt-3 {
+    margin-top: calc(var(--spacing) * 3);
   }
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
   }
-  .mt-10 {
-    margin-top: calc(var(--spacing) * 10);
-  }
   .mt-12 {
     margin-top: calc(var(--spacing) * 12);
+  }
+  .flex {
+    display: flex;
+  }
+  .table {
+    display: table;
+  }
+  .h-full {
+    height: 100%;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .border-collapse {
+    border-collapse: collapse;
+  }
+  .transform {
+    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .resize {
+    resize: both;
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .bg-amber-900 {
+    background-color: var(--color-amber-900);
+  }
+  .p-5 {
+    padding: calc(var(--spacing) * 5);
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-amber-600 {
+    color: var(--color-amber-600);
+  }
+  .text-white {
+    color: var(--color-white);
+  }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  .filter {
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .ease-in-out {
+    --tw-ease: var(--ease-in-out);
+    transition-timing-function: var(--ease-in-out);
   }
 }
 @font-face {
@@ -216,7 +287,7 @@ body {
 }
 .writings {
   position: absolute;
-  top: calc(var(--spacing) * 44);
+  top: 148px;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -229,6 +300,7 @@ body {
   }
   font-family: 'alkanz';
   animation: fade-in linear 3s;
+  opacity: 1;
 }
 .invite-text {
   font-size: var(--text-xl);
@@ -263,8 +335,8 @@ body {
   position: absolute;
   top: calc(var(--spacing) * 0);
   right: calc(var(--spacing) * 6);
-  height: calc(var(--spacing) * 52);
-  width: calc(var(--spacing) * 24);
+  height: calc(var(--spacing) * 48);
+  width: calc(var(--spacing) * 20);
   object-fit: cover;
   animation: swing 1.2s ease-in-out infinite;
   transform-origin: top center;
@@ -289,6 +361,22 @@ body {
   animation: swing 1s ease-in-out infinite;
   transform-origin: top center;
 }
+article {
+  margin-top: calc(var(--spacing) * 1.5);
+  display: flex;
+  width: calc(var(--spacing) * 56);
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--spacing) * 2);
+  text-align: left;
+  font-family: var(--font-serif);
+}
+main {
+  display: flex;
+  gap: calc(var(--spacing) * 5);
+  font-size: var(--text-lg);
+  line-height: var(--tw-leading, var(--text-lg--line-height));
+}
 @keyframes swing {
   0% {
     transform: rotate(3deg);
@@ -307,6 +395,67 @@ body {
   100% {
     opacity: 1;
   }
+}
+#rsvpForm {
+  opacity: 0;
+}
+@keyframes arrow-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+.arrow-container {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  z-index: 50;
+  right: 75%;
+  animation: arrow-bounce 1s infinite;
+}
+.arrow {
+  color: var(--color-amber-700);
+}
+.arrow-text {
+  width: 80%;
+  font-size: 12px;
+  color: #92400e;
+  transform: rotate(90deg) translateX(-35px) translateY(15px);
+  transform-origin: left center;
+  margin: 0;
+}
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
 }
 @property --tw-blur {
   syntax: "*";
@@ -361,9 +510,20 @@ body {
   syntax: "*";
   inherits: false;
 }
+@property --tw-ease {
+  syntax: "*";
+  inherits: false;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
+      --tw-border-style: solid;
+      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
@@ -377,6 +537,7 @@ body {
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
+      --tw-ease: initial;
     }
   }
 }
