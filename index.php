@@ -156,6 +156,8 @@ $guest = $q->fetch_assoc();
       method="post"
       id="rsvpForm"
     >
+      <p class="invite-text"><?= $name; ?></p>
+      <p class="invite-text"><?= $invitees; ?></p>
       <main>Please give us your valuable RSVP</main>
       <button type="submit" class="bg-amber-900 text-white p-5 mt-3">
         Inshaallah I will attend
