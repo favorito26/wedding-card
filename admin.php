@@ -17,8 +17,11 @@ Jazakallah Khair.
 ";
 ?>
 
-<link rel="stylesheet" href="./css/output.css">
-
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/output.css">
+</head>
 <div class="p-4 sm:p-6">
 
   <h1 class="text-xl sm:text-2xl font-bold mb-4">Admin Panel – Invitation List</h1>
@@ -38,20 +41,19 @@ Jazakallah Khair.
       <tbody class="divide-y divide-gray-200 text-sm sm:text-base">
         <?php while ($g = $res->fetch_assoc()): ?>
           <?php
-            $inviteLink = "http://localhost:4000/index.php?id=" . $g['id'];
-            $finalMessage = str_replace(["{name}", "{invite_link}"], [$g['name'], $inviteLink], $baseMessage);
-            $encodedMsg = urlencode($finalMessage);
+          $inviteLink = "https://mufaddalcodes.in/wedding_invite/index.php?id=" . $g['id'];
+          $finalMessage = str_replace(["{name}", "{invite_link}"], [$g['name'], $inviteLink], $baseMessage);
+          $encodedMsg = urlencode($finalMessage);
           ?>
 
           <tr class="hover:bg-gray-100 transition">
-            <td class="px-4 py-4 sm:px-6"><?= $g['name'] ?></td>
-            <td class="px-4 py-4 sm:px-6"><?= $g['phone'] ?></td>
-            <td class="px-4 py-4 sm:px-6">
-              <span class="
-                px-3 py-1 rounded text-xs sm:text-sm
-                <?php if($g['rsvp']=='accepted') echo 'bg-green-100 text-green-700'; ?>
-                <?php if($g['rsvp']=='declined') echo 'bg-red-100 text-red-700'; ?>
-                <?php if($g['rsvp']==null) echo 'bg-yellow-100 text-yellow-700'; ?>
+            <td class="md:px-4 md:py-4 px-2"><?= $g['name'] ?></td>
+            <td class="md:px-4 md:py-4 px-2"><?= $g['phone'] ?></td>
+            <td class="md:px-4 md:py-4 px-2">
+              <span class="px-3 py-1 rounded text-xs sm:text-sm
+                <?php if ($g['rsvp'] == 'accepted') echo 'bg-green-100 text-green-700'; ?>
+                <?php if ($g['rsvp'] == 'declined') echo 'bg-red-100 text-red-700'; ?>
+                <?php if ($g['rsvp'] == null) echo 'bg-yellow-100 text-yellow-700'; ?>
               ">
                 <?= $g['rsvp'] ?: 'Pending' ?>
               </span>
@@ -62,7 +64,7 @@ Jazakallah Khair.
                 href="https://wa.me/91<?= $g['phone'] ?>?text=<?= $encodedMsg ?>"
                 target="_blank"
                 class="inline-block bg-amber-700 hover:bg-amber-800 
-                       text-white px-3 py-2 sm:px-4 sm:py-2 rounded shadow text-xs sm:text-sm">
+                       text-amber-900 px-3 py-2 sm:px-4 sm:py-2 rounded shadow text-xs sm:text-sm">
                 Send Message
               </a>
             </td>

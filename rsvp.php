@@ -1,10 +1,12 @@
 <?php
 include 'db.php';
 
-$id = $_POST['id'];
+$id     = intval($_POST['id']);
 $status = $_POST['status'];
 
-$db->query("UPDATE guests SET rsvp='$status' WHERE id=$id");
+$stmt = $db->prepare("UPDATE guests SET rsvp = ? WHERE id = ?");
+$stmt->bind_param("si", $status, $id);
+$stmt->execute();
 
-header("location: index.php?id=$id");
+header("Location: index.php?id=" . $id);
 exit;
